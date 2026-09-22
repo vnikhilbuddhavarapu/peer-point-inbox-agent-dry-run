@@ -1,0 +1,31 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "peer-point-inbox-agent-dry-run",
+  "main": "src/server.ts",
+  "compatibility_date": "2026-09-18",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "ai": { "binding": "AI", "remote": true },
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/agents/*", "/api/*", "/email"],
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "INBOX_AGENT", "class_name": "InboxAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["InboxAgent"] }],
+  "vars": {
+    "AI_GATEWAY_ID": "default",
+    "MAIL_ROUTER_URL": "https://peer-point-mail-router.peer-point-user-group.workers.dev",
+    "MAIL_ROUTER_CAPABILITY": "simulator-only",
+    "EMAIL_SIGNING_PUBLIC_JWK": "{\"key_ops\":[\"verify\"],\"ext\":true,\"kty\":\"EC\",\"x\":\"LatDY36vPPJ1_BzPUvSD0XOZRc9U6hq8WAlN5tkKhas\",\"y\":\"UYgIhQnGWF8YvWtF7g6OFoGsizva0ndqTPYdS_xqLAs\",\"crv\":\"P-256\"}",
+    "INBOX_HANDLE": "mtl-agent",
+    "INBOUND_DOMAIN": "cf.prompt2prod.dev",
+    "CITY": "Montreal",
+    "CARD": "inbox-agent",
+    "ENVIRONMENT": "starter",
+  },
+  "observability": {
+    "logs": { "enabled": true, "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 1 },
+  },
+}

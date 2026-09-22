@@ -1,0 +1,16 @@
+{
+  "card": "card-3-inbox-agent",
+  "title": "Inbox Agent",
+  "intendedEditFiles": ["src/agent/context.ts", "src/agent/workshop.ts"],
+  "sharedServices": [
+    {
+      "id": "mail-router",
+      "name": "Instructor-operated mail router and signed simulator",
+      "purpose": "Delivers bounded, signed inbound payloads and accepts approved outbound requests in simulator mode.",
+      "publicConfiguration": ["MAIL_ROUTER_URL", "EMAIL_SIGNING_PUBLIC_JWK"],
+      "secretConfiguration": ["MAIL_ROUTER_CAPABILITY"],
+      "attendeeManaged": false
+    }
+  ],
+  "sourceCommit": "development"
+}
